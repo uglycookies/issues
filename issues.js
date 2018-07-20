@@ -1,3 +1,8 @@
+ // TODO:
+ // invalid input handling!!!
+ // expand description text box
+ // add placeholders
+ // fix styling
 
 const button = document.createElement('button');
 button.innerHTML = 'Report Issue';
@@ -5,28 +10,103 @@ document.body.appendChild(button);
 
 button.addEventListener('click', showForm);
 
+const popup_container = document.createElement('div');
+
+const popup = document.createElement('div');
+popup.setAttribute('id', 'popup');
+popup_container.appendChild(popup);
+
+const header_container = document.createElement('div');
+header_container.setAttribute('id', 'header_container');
+
+const bug_text_container = document.createElement('div');
+const bug_text = document.createElement('h1');
+bug_text.innerHTML = 'See a Bug?';
+bug_text_container.appendChild(bug_text);
+
+const bug_image_container = document.createElement('div');
+const bug_image = document.createElement('img');
+bug_image.setAttribute('id', 'bug_image');
+bug_image.setAttribute('src', 'https://i.imgur.com/FOIoojF.png');
+bug_image_container.appendChild(bug_image);
+
+const form = document.createElement('form');
+form.setAttribute('id', 'form');
+form.setAttribute('method', 'post');
+form.setAttribute('action', 'http://localhost:8080/api/test');
+form.appendChild(header_container);
+header_container.appendChild(bug_text_container);
+header_container.appendChild(bug_image_container);
+
+const bug_type = document.createElement('h3');
+bug_type.innerHTML = 'Issue Type';
+
+const select = document.createElement('select'); // dropdown
+select.setAttribute('id', 'dropdown');
+select.setAttribute('name', 'bug-types');
+select.setAttribute('class', 'inputs');
+
+const description = document.createElement('h3');
+description.innerHTML = 'Description';
+
+const description_details = document.createElement('textarea');
+description_details.setAttribute('id', 'description');
+description_details.setAttribute('class', 'inputs');
+
+const email = document.createElement('h3');
+email.innerHTML = 'Email';
+
+const user_email = document.createElement('input');
+user_email.setAttribute('type', 'text');
+user_email.setAttribute('class', 'inputs');
+
+const submit = document.createElement('input'); //submit button
+submit.setAttribute('id', 'submit_btn');
+submit.setAttribute('type', 'submit');
+submit.setAttribute('value', 'Report Bug');
+submit.addEventListener('click', function() {
+  if (document.getElementById('dropdown').value == "Select type of issue" || document.getElementById('description').value == "") {
+    sdocument.getElementById('popup').style.display = "none";
+    alert("Please enter bug type and description");
+
+  } else {
+  document.getElementById('form').submit();
+    alert("But reported successfully!");
+  }
+})
+
+const container1 = document.createElement('div');
+container1.setAttribute('class', 'input_field');
+container1.appendChild(bug_type);
+container1.appendChild(select);
+form.appendChild(container1);
+
+const container2= document.createElement('div');
+container2.setAttribute('class', 'input_field');
+container2.appendChild(description);
+container2.appendChild(description_details);
+form.appendChild(container2);
+
+const container3 = document.createElement('div');
+container3.setAttribute('class', 'input_field');
+container3.appendChild(email);
+container3.appendChild(user_email);
+form.appendChild(container3);
+form.appendChild(submit);
+
 function showForm() {
 
-  const popup = document.createElement('div');
-  popup.setAttribute('id', 'popup');
-
-  const form = document.createElement('form');
-  form.setAttribute('id', 'form');
-  form.setAttribute('method', 'post');
-  form.setAttribute('action', 'http://localhost:8080/api/test');
-
-  const issue = document.createElement('input'); // text
-  issue.setAttribute('type', 'text');
-  issue.setAttribute('issue', 'issue');
-
-  const submit = document.createElement('input'); //submit button
-  submit.setAttribute('type', 'submit');
-  submit.setAttribute('value', 'submit');
-
-  form.appendChild(issue);
-  form.appendChild(submit);
-
-  document.getElementsByTagName('body')[0].appendChild(popup);
+  document.getElementsByTagName('body')[0].appendChild(popup_container);
+  document.getElementById('popup').appendChild(form);
   document.getElementById('popup').appendChild(form);
   document.getElementById('popup').style.display = "block";
+
+  const bug_types = ['Select type of issue','Visual', 'Functional', 'Technical', 'Content', 'Performance'];
+
+  for(let i = 0; i < bug_types.length; i++) {
+    const option = document.createElement('option');
+    option.setAttribute('value', bug_types[i]);
+    option.innerHTML =  bug_types[i];
+    document.getElementById('dropdown').appendChild(option);
+  }
 }
