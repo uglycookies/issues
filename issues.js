@@ -45,7 +45,7 @@ bug_type.innerHTML = 'Issue Type';
 
 const select = document.createElement('select'); // dropdown
 select.setAttribute('id', 'issue_type');
-select.setAttribute('name', 'bug_types');
+select.setAttribute('name', 'issue_type');
 select.setAttribute('class', 'inputs');
 
 const description = document.createElement('h3');
@@ -70,8 +70,8 @@ submit.setAttribute('id', 'submit_btn');
 submit.setAttribute('type', 'submit');
 submit.setAttribute('value', 'Report Bug');
 submit.addEventListener('click', function() {
-  if (document.getElementById('dropdown').value == "Select type of issue" || document.getElementById('description').value == "") {
-    sdocument.getElementById('popup').style.display = "none";
+  if (document.getElementById('issue_type').value == "Select type of issue" || document.getElementById('description').value == "") {
+    document.getElementById('popup').style.display = "none";
     alert("Please enter bug type and description");
 
   } else {
@@ -86,7 +86,7 @@ container1.appendChild(bug_type);
 container1.appendChild(select);
 form.appendChild(container1);
 
-const container2= document.createElement('div');
+const container2 = document.createElement('div');
 container2.setAttribute('class', 'input_field');
 container2.appendChild(description);
 container2.appendChild(description_details);
@@ -103,8 +103,8 @@ function showForm() {
 
   document.getElementsByTagName('body')[0].appendChild(popup_container);
   document.getElementById('popup').appendChild(form);
-  document.getElementById('popup').appendChild(form);
-  document.getElementById('popup').style.display = "block";
+  // document.getElementById('popup').appendChild(form);
+  // document.getElementById('popup').style.display = "block";
 
   const bug_types = ['Select type of issue','Visual', 'Functional', 'Technical', 'Content', 'Performance'];
 
@@ -112,6 +112,6 @@ function showForm() {
     const option = document.createElement('option');
     option.setAttribute('value', bug_types[i]);
     option.innerHTML =  bug_types[i];
-    document.getElementById('dropdown').appendChild(option);
+    document.getElementById('issue_type').appendChild(option);
   }
 }
