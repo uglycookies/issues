@@ -45,7 +45,7 @@ bug_type.innerHTML = 'Issue Type';
 
 const select = document.createElement('select'); // dropdown
 select.setAttribute('id', 'issue_type');
-select.setAttribute('name', 'bug-types');
+select.setAttribute('name', 'bug_types');
 select.setAttribute('class', 'inputs');
 
 const description = document.createElement('h3');
@@ -53,6 +53,7 @@ description.innerHTML = 'Description';
 
 const description_details = document.createElement('textarea');
 description_details.setAttribute('id', 'description');
+description_details.setAttribute('name', 'description');
 description_details.setAttribute('class', 'inputs');
 
 const email = document.createElement('h3');
@@ -60,6 +61,7 @@ email.innerHTML = 'Email';
 
 const user_email = document.createElement('input');
 user_email.setAttribute('id', 'user_email');
+user_email.setAttribute('name', 'user_email');
 user_email.setAttribute('type', 'text');
 user_email.setAttribute('class', 'inputs');
 
