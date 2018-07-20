@@ -13,7 +13,7 @@ function showForm() {
   const form = document.createElement('form');
   form.setAttribute('id', 'form');
   form.setAttribute('method', 'post');
-  form.setAttribute('action', 'http://localhost8080/api/test');
+  form.setAttribute('action', 'http://localhost:8080/api/test');
 
   const issue = document.createElement('input'); // text
   issue.setAttribute('type', 'text');
