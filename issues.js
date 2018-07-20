@@ -1,5 +1,6 @@
  // TODO:
  // invalid input handling!!!
+ // add 'close' button
  // expand description text box
  // add placeholders
  // fix styling
