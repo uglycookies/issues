@@ -33,6 +33,7 @@ bug_image_container.appendChild(bug_image);
 const form = document.createElement('form');
 form.setAttribute('id', 'form');
 form.setAttribute('method', 'post');
+form.setAttribute('enctype', 'multipart/form data');
 form.setAttribute('action', 'http://localhost:8080/api/test');
 form.appendChild(header_container);
 header_container.appendChild(bug_text_container);
@@ -42,7 +43,7 @@ const bug_type = document.createElement('h3');
 bug_type.innerHTML = 'Issue Type';
 
 const select = document.createElement('select'); // dropdown
-select.setAttribute('id', 'dropdown');
+select.setAttribute('id', 'issue_type');
 select.setAttribute('name', 'bug-types');
 select.setAttribute('class', 'inputs');
 
@@ -57,6 +58,7 @@ const email = document.createElement('h3');
 email.innerHTML = 'Email';
 
 const user_email = document.createElement('input');
+user_email.setAttribute('id', 'user_email');
 user_email.setAttribute('type', 'text');
 user_email.setAttribute('class', 'inputs');
 
