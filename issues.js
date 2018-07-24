@@ -35,7 +35,7 @@ const form = document.createElement('form');
 form.setAttribute('id', 'form');
 form.setAttribute('method', 'post');
 form.setAttribute('enctype', 'multipart/form data');
-form.setAttribute('action', 'http://localhost:8080/api/test');
+form.setAttribute('action', 'http://localhost:8080/api/issues');
 form.appendChild(header_container);
 header_container.appendChild(bug_text_container);
 header_container.appendChild(bug_image_container);
