@@ -1,9 +1,10 @@
  // TODO:
  // invalid input handling!!!
- // add 'close' button
  // expand description text box
  // add placeholders
  // fix styling
+
+const background = document.getElementsByTagName('body')[0];
 
 const button = document.createElement('button');
 button.innerHTML = 'Report Issue';
@@ -19,6 +20,14 @@ popup_container.appendChild(popup);
 
 const header_container = document.createElement('div');
 header_container.setAttribute('id', 'header_container');
+
+const close_btn = document.createElement('button');
+close_btn.setAttribute('id', 'close_btn');
+close_btn.setAttribute('type', 'button');
+close_btn.setAttribute('style', 'font-size:20px; width: 40px; height: auto; position:absolute; right:-4px; top:-4px; border:1px solid #1a0000; cursor:pointer; color:#fff; background-color:#1a0000; border-radius:5px;');
+close_btn.innerHTML = 'X';
+close_btn.addEventListener('click', hideForm);
+
 
 const bug_text_container = document.createElement('div');
 const bug_text = document.createElement('h1');
@@ -39,6 +48,7 @@ form.setAttribute('action', 'http://localhost:8080/api/issues');
 form.appendChild(header_container);
 header_container.appendChild(bug_text_container);
 header_container.appendChild(bug_image_container);
+header_container.appendChild(close_btn);
 
 const bug_type = document.createElement('h3');
 bug_type.innerHTML = 'Issue Type';
@@ -73,6 +83,7 @@ submit.addEventListener('click', function() {
   if (document.getElementById('issue_type').value == "Select type of issue" || document.getElementById('description').value == "") {
     document.getElementById('popup').style.display = "none";
     alert("Please enter bug type and description");
+    showForm();
 
   } else {
   document.getElementById('form').submit();
@@ -99,19 +110,29 @@ container3.appendChild(user_email);
 form.appendChild(container3);
 form.appendChild(submit);
 
+let optionsDisplayed = false;
+
 function showForm() {
 
   document.getElementsByTagName('body')[0].appendChild(popup_container);
   document.getElementById('popup').appendChild(form);
-  // document.getElementById('popup').appendChild(form);
-  // document.getElementById('popup').style.display = "block";
+  document.getElementById('popup').style.display = "block";
+  background.setAttribute('style', 'background-color: #474745');
 
   const bug_types = ['Select type of issue','Visual', 'Functional', 'Technical', 'Content', 'Performance'];
-
-  for(let i = 0; i < bug_types.length; i++) {
-    const option = document.createElement('option');
-    option.setAttribute('value', bug_types[i]);
-    option.innerHTML =  bug_types[i];
-    document.getElementById('issue_type').appendChild(option);
+  if(optionsDisplayed === false) {
+    for(let i = 0; i < bug_types.length; i++) {
+      const option = document.createElement('option');
+      option.setAttribute('value', bug_types[i]);
+      option.innerHTML =  bug_types[i];
+      document.getElementById('issue_type').appendChild(option);
+    }
   }
+  optionsDisplayed = true;
+  
+}
+
+function hideForm() {
+  document.getElementById('popup').style.display = "none";
+  background.setAttribute('style', 'background-color: white');
 }
